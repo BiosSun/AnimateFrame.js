@@ -1,0 +1,22 @@
+{
+  "name": "animate",
+  "version": "0.1.0",
+  "description": "This is javascript animate tools.",
+  "main": "animate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biossun/animate"
+  },
+  "keywords": [
+    "animate"
+  ],
+  "author": "Bios Sun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/biossun/animate/issues"
+  },
+  "homepage": "https://github.com/biossun/animate"
+}
