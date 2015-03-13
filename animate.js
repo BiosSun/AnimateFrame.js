@@ -5,7 +5,18 @@
 // @author: Bios Sun <biossun@gmail.com>
 // @date: 2013-06-13
 // @update: 2015-01-27 使用 window.requestAnimationFrame
-(function AnimateInit() {
+(function(scope, factory) {
+
+    var Animate = factory(undefined);
+
+    if (typeof module === 'object' && module.exports === 'object') {
+        module.exports = Animate;
+    }
+    else {
+        scope.Animate = Animate;
+    }
+
+})(this, function(undefined) {
 
     'use strict';
 
@@ -209,5 +220,5 @@
         }
     };
 
-    window.Animate = Animate;
-})(window);
+    return Animate;
+});
