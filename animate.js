@@ -110,7 +110,7 @@
         var t = this;
 
         t.isRun = false;              // 动画是否正在运行
-        t.isPause = false;          // 动画是否暂停
+        t.isPause = false;            // 动画是否暂停
         t.iterationCount = 0;         // 动画当前播放次数
 
         t._timeout = null;            // 动画计时器
@@ -186,8 +186,14 @@
         pause : function() {
             var t = this;
 
-            clearTimeout(t._timeout);
+            if (t.isPause || t.isRun === false) {
+                return;
+            }
+
+            t.isRun = false;
             t.isPause = true;
+
+            clearTimeout(t._timeout);
 
             t._callFun( 'pause', [t] );
         },
@@ -205,7 +211,7 @@
         stop : function( toEnd ) {
             var t = this;
 
-            if (t.isRun === false) {
+            if (t.isRun === false && t.isPause === false) {
                 return;
             }
 
@@ -213,11 +219,11 @@
                t._frame( 1 );
             }
 
-            clearTimeout(t._timeout);
-
             t.isRun = false;
             t.isPause = false;
             t._playTime = 0;
+
+            clearTimeout(t._timeout);
 
             t._callFun( 'finish', [t] );
         },
