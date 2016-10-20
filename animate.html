@@ -1,188 +1,205 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- 网页字符编码 -->
-    <meta charset="utf-8" />
+    <head>
+        <!-- 网页字符编码 -->
+        <meta charset="utf-8" />
 
-    <!-- 使用最高级模式渲染文档，如果有 chrome frame，则使用它渲染文档。-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <!-- 使用最高级模式渲染文档，如果有 chrome frame，则使用它渲染文档。-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Animate.js - Bios Sun</title>
+        <title>Animate.js - Bios Sun</title>
 
-    <!-- 站点图标，可以直接将图标文件放在网站根域名下并命名为 favicon.ico，浏览器将会自动获取。如果需要放置在其它地方，则可以像如下设置。 -->
-    <link type="image/x-icon" rel="shortcut icon" href="http://biossun.org/favicon.ico" />
+        <!-- 站点图标，可以直接将图标文件放在网站根域名下并命名为 favicon.ico，浏览器将会自动获取。如果需要放置在其它地方，则可以像如下设置。 -->
+        <link type="image/x-icon" rel="shortcut icon" href="http://biossun.org/favicon.ico" />
 
-    <!-- 样式文件位置 -->
-    <link rel="stylesheet" href="">
-    <style type="text/css">
-        body {
-            font: 12px/1.6 arial,sans-serif;
-            color: #666;
-            width: 900px;
-            margin: 50px auto;
-        }
+        <!-- 样式文件位置 -->
+        <link rel="stylesheet" href="">
+        <style type="text/css">
+         body {
+             font: 12px/1.6 arial,sans-serif;
+             color: #666;
+             width: 900px;
+             margin: 50px auto;
+         }
 
-        #box {
-            width: 100px;
-            height: 100px;
-            border: 1px solid #ddd;
-            background: #f7f7f7;
-            line-height: 100px;
-            text-align: center;
-            color: #bbb;
+         #box {
+             width: 100px;
+             height: 100px;
+             border: 1px solid #ddd;
+             background: #f7f7f7;
+             line-height: 100px;
+             text-align: center;
+             color: #bbb;
 
-            position: relative;
-            top: 0;
-            left: 0;
-        }
+             position: relative;
+             top: 0;
+             left: 0;
+         }
 
-        #operate {
-            border: 1px solid #eee;
-            background: #f7f7f7;
-            padding: 10px;
-            float: left;
-            margin: 0 0 20px;
-            border-radius: 2px;
-            line-height: 28px;
-        }
+         #operate {
+             border: 1px solid #eee;
+             background: #f7f7f7;
+             padding: 10px;
+             float: left;
+             margin: 0 0 20px;
+             border-radius: 2px;
+             line-height: 28px;
+         }
 
-        label, button, input, select {
-            vertical-align: middle;
-        }
+         label, button, input, select {
+             vertical-align: middle;
+         }
 
-        label {
-            display: inline-block;
-        }
+         label {
+             display: inline-block;
+         }
 
-        button {
-            height: 28px;
-            line-height: 16px;
-            border: 0;
-            border-radius: 2px;
-            background: #d0d0d0;
-            padding: 6px 20px;
+         button {
+             height: 28px;
+             line-height: 16px;
+             border: 0;
+             border-radius: 2px;
+             background: #d0d0d0;
+             padding: 6px 20px;
 
-            cursor: pointer;
-        }
+             cursor: pointer;
+         }
 
-        button:hover {
-            background: #57D661;
-            color: #047400;
-        }
+         button:hover {
+             background: #57D661;
+             color: #047400;
+         }
 
-        input.text, select {
-            width: 140px;
-            background: #fff;
-            border-radius: 3px;
-            border: 1px solid #d0d0d0;
-            padding: 5px;
-            font-size: 12px;
-            line-height: 16px;
+         input.text, select {
+             width: 140px;
+             background: #fff;
+             border-radius: 3px;
+             border: 1px solid #d0d0d0;
+             padding: 5px;
+             font-size: 12px;
+             line-height: 16px;
 
-            margin-right: 16px;
-        }
+             margin-right: 16px;
+         }
 
-        input.text {
-            height: 16px;
-        }
+         input.text {
+             height: 16px;
+         }
 
-        input:focus {
-            border-color: #57d661;
-            outline: 0;
-        }
+         input:focus {
+             border-color: #57d661;
+             outline: 0;
+         }
 
-        select {
-            height: 28px;
-        }
-    </style>
+         select {
+             height: 28px;
+         }
+        </style>
 
-</head>
-<body>
+    </head>
+    <body>
 
-<div id="page">
+        <div id="page">
 
-    <div id="operate">
-        <label>时长：</label>
-        <input class="text" type="text" id="speed" value="500" placeholder="动画时长">
-        <label>过渡：</label>
-        <select id="easing">
-            <option value="linear">linear</option>
-            <option value="easeInQuad">easeInQuad</option>
-            <option value="easeOutQuad">easeOutQuad</option>
-            <option value="easeInOutQuad">easeInOutQuad</option>
-            <option value="easeInCubic">easeInCubic</option>
-            <option value="easeOutCubic">easeOutCubic</option>
-            <option value="easeInOutCubic">easeInOutCubic</option>
-            <option value="easeInQuart">easeInQuart</option>
-            <option value="easeOutQuart">easeOutQuart</option>
-            <option value="easeInOutQuart">easeInOutQuart</option>
-            <option value="easeInQuint">easeInQuint</option>
-            <option value="easeOutQuint">easeOutQuint</option>
-            <option value="easeInOutQuint">easeInOutQuint</option>
-            <option value="easeInSine">easeInSine</option>
-            <option value="easeOutSine">easeOutSine</option>
-            <option value="easeInOutSine">easeInOutSine</option>
-            <option value="easeInExpo">easeInExpo</option>
-            <option value="easeOutExpo">easeOutExpo</option>
-            <option value="easeInOutExpo">easeInOutExpo</option>
-            <option value="easeInCirc">easeInCirc</option>
-            <option value="easeOutCirc">easeOutCirc</option>
-            <option value="easeInOutCirc">easeInOutCirc</option>
-            <option value="easeInElastic">easeInElastic</option>
-            <option value="easeOutElastic">easeOutElastic</option>
-            <option value="easeInOutElastic">easeInOutElastic</option>
-            <option value="easeInBack">easeInBack</option>
-            <option value="easeOutBack">easeOutBack</option>
-            <option value="easeInOutBack">easeInOutBack</option>
-            <option value="easeInBounce">easeInBounce</option>
-            <option value="easeOutBounce">easeOutBounce</option>
-            <option value="easeInOutBounce">easeInOutBounce</option>
-        </select>
-        <label>次数：</label>
-        <input class="text" type="text" id="iteration" value="1" placeholder="执行次数">
-        <button id="run">Run</button>
-        <button id="stop">Stop</button>
-    </div>
+            <div id="operate">
+                <label>时长：</label>
+                <input class="text" type="text" id="speed" value="500" placeholder="动画时长">
+                <label>过渡：</label>
+                <select id="easing">
+                    <option value="linear">linear</option>
+                    <option value="easeInQuad">easeInQuad</option>
+                    <option value="easeOutQuad">easeOutQuad</option>
+                    <option value="easeInOutQuad">easeInOutQuad</option>
+                    <option value="easeInCubic">easeInCubic</option>
+                    <option value="easeOutCubic">easeOutCubic</option>
+                    <option value="easeInOutCubic">easeInOutCubic</option>
+                    <option value="easeInQuart">easeInQuart</option>
+                    <option value="easeOutQuart">easeOutQuart</option>
+                    <option value="easeInOutQuart">easeInOutQuart</option>
+                    <option value="easeInQuint">easeInQuint</option>
+                    <option value="easeOutQuint">easeOutQuint</option>
+                    <option value="easeInOutQuint">easeInOutQuint</option>
+                    <option value="easeInSine">easeInSine</option>
+                    <option value="easeOutSine">easeOutSine</option>
+                    <option value="easeInOutSine">easeInOutSine</option>
+                    <option value="easeInExpo">easeInExpo</option>
+                    <option value="easeOutExpo">easeOutExpo</option>
+                    <option value="easeInOutExpo">easeInOutExpo</option>
+                    <option value="easeInCirc">easeInCirc</option>
+                    <option value="easeOutCirc">easeOutCirc</option>
+                    <option value="easeInOutCirc">easeInOutCirc</option>
+                    <option value="easeInElastic">easeInElastic</option>
+                    <option value="easeOutElastic">easeOutElastic</option>
+                    <option value="easeInOutElastic">easeInOutElastic</option>
+                    <option value="easeInBack">easeInBack</option>
+                    <option value="easeOutBack">easeOutBack</option>
+                    <option value="easeInOutBack">easeInOutBack</option>
+                    <option value="easeInBounce">easeInBounce</option>
+                    <option value="easeOutBounce">easeOutBounce</option>
+                    <option value="easeInOutBounce">easeInOutBounce</option>
+                </select>
+                <label>次数：</label>
+                <input class="text" type="text" id="iteration" value="1" placeholder="执行次数">
+                <button id="run">Run</button>
+                <button id="pause">Pause</button>
+                <button id="stop">Stop</button>
+            </div>
 
-    <div style="clear: both;"></div>
+            <div style="clear: both;"></div>
 
-    <div id="box">box</div>
-</div>
+            <div id="box">box</div>
+        </div>
 
-</body>
+    </body>
 </html>
 
 <!-- 脚本文件位置 -->
 <script type="text/javascript" src="animate.js"></script>
 <script type="text/javascript" src="easing.js"></script>
 <script type="text/javascript">
-(function() {
-    function $(id) { return document.getElementById(id); }
+ (function() {
+     function $(id) { return document.getElementById(id); }
 
-    var Animate = window.Animate,
-        box = $('box'),
-        speed = $('speed'),
-        easing = $('easing'),
-        iteration = $('iteration');
+     var Animate = window.Animate,
+         box = $('box'),
+         speed = $('speed'),
+         easing = $('easing'),
+         iteration = $('iteration');
 
-    var a = new Animate({
-        target : box,
+     var a = new Animate({
+         begin: function() {
+             console.info('begin');
+         },
 
-        frame : function( target, p, e, a ) {
-            target.style.left = (600 * e) + 'px';
-        }
-    });
+         frame : function( p, e, a ) {
+             console.info('frame', p, e, a);
+             box.style.left = (600 * e) + 'px';
+         },
 
-    $('run').onclick = function() {
-        a.options.speed = parseInt( speed.value, 10 ) || speed.value;
-        a.options.easing = easing.value;
-        a.options.iteration = parseInt( iteration.value, 10 ) || 'infinite';
+         finish: function() {
+             console.info('finish');
+         },
 
-        a.run();
-    };
+         pause: function() {
+             console.info('pause');
+         }
 
-    $('stop').onclick = function() {
-        a.suspend();
-    };
-})();
+     });
+
+     $('run').onclick = function() {
+         a.options.speed = parseInt( speed.value, 10 ) || speed.value;
+         a.options.easing = easing.value;
+         a.options.iteration = parseInt( iteration.value, 10 ) || 'infinite';
+
+         a.run();
+     };
+
+     $('stop').onclick = function() {
+         a.stop(1);
+     };
+
+     $('pause').onclick = function() {
+         a.pause();
+     };
+ })();
 </script>
