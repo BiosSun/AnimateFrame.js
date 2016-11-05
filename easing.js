@@ -2,148 +2,151 @@
  * Easing
  */
 (function (Animate) {
-    Animate.easing.swing = function ( t, b, c, d ) {
+    var easing = Animate.easing,
+        math = Math;
+
+    easing.swing = function ( t, b, c, d ) {
         return this[this.def](x, t, b, c, d);
     };
 
-    Animate.easing.easeInQuad = function ( t, b, c, d ) {
+    easing.easeInQuad = function ( t, b, c, d ) {
         return c*(t/=d)*t + b;
     };
 
-    Animate.easing.easeOutQuad = function ( t, b, c, d ) {
+    easing.easeOutQuad = function ( t, b, c, d ) {
         return -c *(t/=d)*(t-2) + b;
     };
 
-    Animate.easing.easeInOutQuad = function ( t, b, c, d ) {
+    easing.easeInOutQuad = function ( t, b, c, d ) {
         if ((t/=d/2) < 1) return c/2*t*t + b;
         return -c/2 * ((--t)*(t-2) - 1) + b;
     };
 
-    Animate.easing.easeInCubic = function ( t, b, c, d ) {
+    easing.easeInCubic = function ( t, b, c, d ) {
         return c*(t/=d)*t*t + b;
     };
 
-    Animate.easing.easeOutCubic = function ( t, b, c, d ) {
+    easing.easeOutCubic = function ( t, b, c, d ) {
         return c*((t=t/d-1)*t*t + 1) + b;
     };
 
-    Animate.easing.easeInOutCubic = function ( t, b, c, d ) {
+    easing.easeInOutCubic = function ( t, b, c, d ) {
         if ((t/=d/2) < 1) return c/2*t*t*t + b;
         return c/2*((t-=2)*t*t + 2) + b;
     };
 
-    Animate.easing.easeInQuart = function ( t, b, c, d ) {
+    easing.easeInQuart = function ( t, b, c, d ) {
         return c*(t/=d)*t*t*t + b;
     };
 
-    Animate.easing.easeOutQuart = function ( t, b, c, d ) {
+    easing.easeOutQuart = function ( t, b, c, d ) {
         return -c * ((t=t/d-1)*t*t*t - 1) + b;
     };
 
-    Animate.easing.easeInOutQuart = function ( t, b, c, d ) {
+    easing.easeInOutQuart = function ( t, b, c, d ) {
         if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
         return -c/2 * ((t-=2)*t*t*t - 2) + b;
     };
 
-    Animate.easing.easeInQuint = function ( t, b, c, d ) {
+    easing.easeInQuint = function ( t, b, c, d ) {
         return c*(t/=d)*t*t*t*t + b;
     };
 
-    Animate.easing.easeOutQuint = function ( t, b, c, d ) {
+    easing.easeOutQuint = function ( t, b, c, d ) {
         return c*((t=t/d-1)*t*t*t*t + 1) + b;
     };
 
-    Animate.easing.easeInOutQuint = function ( t, b, c, d ) {
+    easing.easeInOutQuint = function ( t, b, c, d ) {
         if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
         return c/2*((t-=2)*t*t*t*t + 2) + b;
     };
 
-    Animate.easing.easeInSine = function ( t, b, c, d ) {
-        return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+    easing.easeInSine = function ( t, b, c, d ) {
+        return -c * math.cos(t/d * (math.PI/2)) + c + b;
     };
 
-    Animate.easing.easeOutSine = function ( t, b, c, d ) {
-        return c * Math.sin(t/d * (Math.PI/2)) + b;
+    easing.easeOutSine = function ( t, b, c, d ) {
+        return c * math.sin(t/d * (math.PI/2)) + b;
     };
 
-    Animate.easing.easeInOutSine = function ( t, b, c, d ) {
-        return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+    easing.easeInOutSine = function ( t, b, c, d ) {
+        return -c/2 * (math.cos(math.PI*t/d) - 1) + b;
     };
 
-    Animate.easing.easeInExpo = function ( t, b, c, d ) {
-        return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+    easing.easeInExpo = function ( t, b, c, d ) {
+        return (t==0) ? b : c * math.pow(2, 10 * (t/d - 1)) + b;
     };
 
-    Animate.easing.easeOutExpo = function ( t, b, c, d ) {
-        return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+    easing.easeOutExpo = function ( t, b, c, d ) {
+        return (t==d) ? b+c : c * (-math.pow(2, -10 * t/d) + 1) + b;
     };
 
-    Animate.easing.easeInOutExpo = function ( t, b, c, d ) {
+    easing.easeInOutExpo = function ( t, b, c, d ) {
         if (t==0) return b;
         if (t==d) return b+c;
-        if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
-        return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+        if ((t/=d/2) < 1) return c/2 * math.pow(2, 10 * (t - 1)) + b;
+        return c/2 * (-math.pow(2, -10 * --t) + 2) + b;
     };
 
-    Animate.easing.easeInCirc = function ( t, b, c, d ) {
-        return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+    easing.easeInCirc = function ( t, b, c, d ) {
+        return -c * (math.sqrt(1 - (t/=d)*t) - 1) + b;
     };
 
-    Animate.easing.easeOutCirc = function ( t, b, c, d ) {
-        return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+    easing.easeOutCirc = function ( t, b, c, d ) {
+        return c * math.sqrt(1 - (t=t/d-1)*t) + b;
     };
 
-    Animate.easing.easeInOutCirc = function ( t, b, c, d ) {
-        if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
-        return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+    easing.easeInOutCirc = function ( t, b, c, d ) {
+        if ((t/=d/2) < 1) return -c/2 * (math.sqrt(1 - t*t) - 1) + b;
+        return c/2 * (math.sqrt(1 - (t-=2)*t) + 1) + b;
     };
 
-    Animate.easing.easeInElastic = function ( t, b, c, d ) {
+    easing.easeInElastic = function ( t, b, c, d ) {
         var s=1.70158;var p=0;var a=c;
         if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
-        if (a < Math.abs(c)) { a=c; var s=p/4; }
-        else var s = p/(2*Math.PI) * Math.asin (c/a);
-        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+        if (a < math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*math.PI) * math.asin (c/a);
+        return -(a*math.pow(2,10*(t-=1)) * math.sin( (t*d-s)*(2*math.PI)/p )) + b;
     };
 
-    Animate.easing.easeOutElastic = function ( t, b, c, d ) {
+    easing.easeOutElastic = function ( t, b, c, d ) {
         var s=1.70158;var p=0;var a=c;
         if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
-        if (a < Math.abs(c)) { a=c; var s=p/4; }
-        else var s = p/(2*Math.PI) * Math.asin (c/a);
-        return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+        if (a < math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*math.PI) * math.asin (c/a);
+        return a*math.pow(2,-10*t) * math.sin( (t*d-s)*(2*math.PI)/p ) + c + b;
     };
 
-    Animate.easing.easeInOutElastic = function ( t, b, c, d ) {
+    easing.easeInOutElastic = function ( t, b, c, d ) {
         var s=1.70158;var p=0;var a=c;
         if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
-        if (a < Math.abs(c)) { a=c; var s=p/4; }
-        else var s = p/(2*Math.PI) * Math.asin (c/a);
-        if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
-        return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+        if (a < math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*math.PI) * math.asin (c/a);
+        if (t < 1) return -.5*(a*math.pow(2,10*(t-=1)) * math.sin( (t*d-s)*(2*math.PI)/p )) + b;
+        return a*math.pow(2,-10*(t-=1)) * math.sin( (t*d-s)*(2*math.PI)/p )*.5 + c + b;
     };
 
-    Animate.easing.easeInBack = function ( t, b, c, d, s ) {
+    easing.easeInBack = function ( t, b, c, d, s ) {
         if (s == undefined) s = 1.70158;
         return c*(t/=d)*t*((s+1)*t - s) + b;
     };
 
-    Animate.easing.easeOutBack = function ( t, b, c, d, s ) {
+    easing.easeOutBack = function ( t, b, c, d, s ) {
         if (s == undefined) s = 1.70158;
         return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
     };
 
-    Animate.easing.easeInOutBack = function ( t, b, c, d, s ) {
+    easing.easeInOutBack = function ( t, b, c, d, s ) {
         if (s == undefined) s = 1.70158;
         if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
         return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
     };
 
-    Animate.easing.easeInBounce = function ( t, b, c, d ) {
+    easing.easeInBounce = function ( t, b, c, d ) {
         return c - this.easeOutBounce (d-t, 0, c, d) + b;
     };
 
-    Animate.easing.easeOutBounce = function ( t, b, c, d ) {
+    easing.easeOutBounce = function ( t, b, c, d ) {
         if ((t/=d) < (1/2.75)) {
             return c*(7.5625*t*t) + b;
         } else if (t < (2/2.75)) {
@@ -155,7 +158,7 @@
         }
     };
 
-    Animate.easing.easeInOutBounce = function ( t, b, c, d ) {
+    easing.easeInOutBounce = function ( t, b, c, d ) {
         if (t < d/2) return this.easeInBounce (t*2, 0, c, d) * .5 + b;
         return this.easeOutBounce (t*2-d, 0, c, d) * .5 + c*.5 + b;
     };

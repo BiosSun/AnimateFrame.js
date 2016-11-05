@@ -22,5 +22,11 @@
   ],
   "bugs": {
     "url": "https://github.com/biossun/animate/issues"
+  },
+  "scripts": {
+    "start": "uglifyjs animate.js --compress --mangle -o animate.min.js && uglifyjs easing.js --compress --mangle -o easing.min.js"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.7.4"
   }
 }
