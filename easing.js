@@ -5,10 +5,6 @@
     var easing = Animate.easing,
         math = Math;
 
-    easing.swing = function ( t, b, c, d ) {
-        return this[this.def](x, t, b, c, d);
-    };
-
     easing.easeInQuad = function ( t, b, c, d ) {
         return c*(t/=d)*t + b;
     };

@@ -260,10 +260,14 @@
     };
 
     Animate.easing = {
-        def : 'linear',
+        def : 'swing',
 
         linear : function( t, b, c, d ) {
             return t;
+        },
+
+        swing: function( t, b, c, d ) {
+            return 0.5 - Math.cos( t * Math.PI ) / 2;
         }
     };
 
