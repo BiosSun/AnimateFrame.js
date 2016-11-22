@@ -3,7 +3,7 @@
  */
 (function(scope, factory) {
 
-    var Animate = factory();
+    var Animate = factory(scope.requestAnimationFrame, scope.cancelAnimationFrame);
 
     if (typeof module === 'object' && module.exports === 'object') {
         module.exports = Animate;
@@ -12,7 +12,7 @@
         scope.Animate = Animate;
     }
 
-})(this, function() {
+})(this, function(raf, caf) {
 
     'use strict';
 
@@ -32,7 +32,15 @@
     FS = Math.floor(1000 / FPS),
 
     // 无限循环关键字
-    INFINITE = 'infinite';
+    INFINITE = 'infinite',
+
+    requestAnimateFrame = function(callback, time) {
+        return raf ? raf(callback) : setTimeout(callback, FS);
+    },
+
+    cancelAnimateFrame = function(id) {
+        caf ? caf(id) : clearTimeout(id);
+    };
 
     /**
      * 动画处理函数
@@ -46,7 +54,7 @@
         t.isPause = false;            // 动画是否暂停
         t.iterationCount = 0;         // 动画当前播放次数
 
-        t._timeout = null;            // 动画计时器
+        t._frameId = null;            // 动画所注册的帧的 ID
         t._playTime = 0;              // 动画播放时长
 
         options.easing = options.easing || Animate.easing.def;
@@ -78,7 +86,7 @@
 
             t.isRun = true;
             lastFrameTime = new Date();
-            t._timeout = setTimeout(step, FS);
+            t._frameId = requestAnimateFrame(step);
 
             return true;
 
@@ -95,7 +103,7 @@
                 // 继续执行动画
                 if ( progress < 1 ) {
                     lastFrameTime = now;
-                    t._timeout = setTimeout( step, FS );
+                    t._frameId = requestAnimateFrame(step);
                 }
                 // 完成动画
                 else {
@@ -126,7 +134,7 @@
             t.isRun = false;
             t.isPause = true;
 
-            clearTimeout(t._timeout);
+            cancelAnimateFrame(t._frameId);
 
             t._callFun( 'pause', [t] );
         },
@@ -152,7 +160,7 @@
             t.isPause = false;
             t._playTime = 0;
 
-            clearTimeout(t._timeout);
+            cancelAnimateFrame(t._frameId);
 
             t._callFun( 'finish', [t] );
         },
