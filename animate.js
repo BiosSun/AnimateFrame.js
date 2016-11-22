@@ -3,7 +3,7 @@
  */
 (function(scope, factory) {
 
-    var Animate = factory(undefined);
+    var Animate = factory();
 
     if (typeof module === 'object' && module.exports === 'object') {
         module.exports = Animate;
@@ -12,7 +12,7 @@
         scope.Animate = Animate;
     }
 
-})(this, function(undefined) {
+})(this, function() {
 
     'use strict';
 
@@ -31,7 +31,8 @@
     // 帧间时长，由FPS计算而来。
     FS = Math.floor(1000 / FPS),
 
-    _hasown = Object.prototype.hasOwnProperty;
+    // 无限循环关键字
+    INFINITE = 'infinite';
 
     /**
      * 动画处理函数
@@ -49,8 +50,8 @@
         t._playTime = 0;              // 动画播放时长
 
         options.easing = options.easing || Animate.easing.def;
-        options.speed = _hasown.call(SPEED, options.speed) ? SPEED[options.speed] : options.speed;
-        options.iteration = options.iteration !== 'infinite' && options.iteration < 1 ? 1 : options.iteration;
+        options.speed = SPEED[options.speed] || options.speed;
+        options.iteration = options.iteration !== INFINITE && options.iteration < 1 ? 1 : options.iteration;
 
         t.options = options;
     }
@@ -102,7 +103,7 @@
                     t.iterationCount++;
 
                     // 重复播放
-                    if ( t.options.iteration === 'infinite' || t.options.iteration > t.iterationCount ) {
+                    if ( t.options.iteration === INFINITE || t.options.iteration > t.iterationCount ) {
                         t.run();
                     }
                     else {
@@ -168,22 +169,17 @@
          * 执行回调函数
          */
         _callFun : function( name, params ) {
-            var fun = this.options[name],
-                r = true;
+            var t = this,
+                fun = t.options[name];
 
             if ( typeof fun === 'function' ) {
-                fun.apply( this, params );
+                fun.apply( t, params );
             }
             else if ( typeof fun === 'object' && typeof fun.length === 'number' ) {  // array
-                for ( var i = 0, l = fun.lenght; i < l; i++ ) {
-                    fun[i].apply( this, params );
+                for ( var i = 0; i < fun.lenght; i++ ) {
+                    fun[i].apply( t, params );
                 }
             }
-            else {
-                r = false;
-            }
-
-            return r;
         }
     };
 
