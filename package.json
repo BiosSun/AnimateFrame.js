@@ -2,7 +2,7 @@
   "name": "animate",
   "title": "Animate.js",
   "description": "This is javascript animate tools.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "dist/animate.js",
   "homepage": "http://github.com/biossun/animate",
   "keywords": [ "animate" ],
