@@ -34,11 +34,13 @@
     // 无限循环关键字
     INFINITE = 'infinite',
 
-    requestAnimateFrame = function(callback, time) {
+    // 请求动画帧
+    requestAnimationFrame = function(callback, time) {
         return raf ? raf(callback) : setTimeout(callback, FS);
     },
 
-    cancelAnimateFrame = function(id) {
+    // 取消一个已请求到的动画帧
+    cancelAnimationFrame = function(id) {
         caf ? caf(id) : clearTimeout(id);
     };
 
@@ -86,7 +88,7 @@
 
             t.isRun = true;
             lastFrameTime = new Date();
-            t._frameId = requestAnimateFrame(step);
+            t._frameId = requestAnimationFrame(step);
 
             return true;
 
@@ -103,7 +105,7 @@
                 // 继续执行动画
                 if ( progress < 1 ) {
                     lastFrameTime = now;
-                    t._frameId = requestAnimateFrame(step);
+                    t._frameId = requestAnimationFrame(step);
                 }
                 // 完成动画
                 else {
@@ -134,7 +136,7 @@
             t.isRun = false;
             t.isPause = true;
 
-            cancelAnimateFrame(t._frameId);
+            cancelAnimationFrame(t._frameId);
 
             t._callFun( 'pause', [t] );
         },
@@ -160,7 +162,7 @@
             t.isPause = false;
             t._playTime = 0;
 
-            cancelAnimateFrame(t._frameId);
+            cancelAnimationFrame(t._frameId);
 
             t._callFun( 'finish', [t] );
         },
