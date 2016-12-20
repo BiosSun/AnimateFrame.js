@@ -35,13 +35,13 @@
     INFINITE = 'infinite',
 
     // 请求动画帧
-    requestAnimationFrame = function(callback, time) {
-        return raf ? raf(callback) : setTimeout(callback, FS);
+    requestAnimationFrame = raf  || function(callback) {
+        return setTimeout(callback, FS);
     },
 
-    // 取消一个已请求到的动画帧
-    cancelAnimationFrame = function(id) {
-        caf ? caf(id) : clearTimeout(id);
+    // 取消已请求到的动画帧
+    cancelAnimationFrame = caf || function(id) {
+        clearTimeout(id);
     };
 
     /**
