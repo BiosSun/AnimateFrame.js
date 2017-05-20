@@ -26,6 +26,19 @@
   "scripts": {
     "start": "uglifyjs animate.js --compress --mangle -o animate.min.js && uglifyjs easing.js --compress --mangle -o easing.min.js"
   },
+  "babel": {
+    "presets": [
+      ["env", {
+        "targets": {
+          "browsers": ["ios >= 6", "android >= 4.1"]
+        },
+        "exclude": ["transform-es2015-typeof-symbol"]
+      }]
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  },
   "devDependencies": {
     "uglify-js": "^2.7.4"
   }
