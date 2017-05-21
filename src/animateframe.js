@@ -1,6 +1,3 @@
-// 导出 easing 以供用户使用，Animate 本身并未用到它。
-// -----------------------------------------------------------------------------
-
 import swing from './easing/swing';
 
 const raf = (typeof global === 'object' && global.requestAnimationFrame) || (typeof window === 'object' && window.requestAnimationFrame);
@@ -40,7 +37,7 @@ const cancelAnimationFrame = caf || function(id) {
  *
  * @param {object} options - 配置对象
  */
-export default function Animate( options ) {
+export default function AnimateFrame( options ) {
     const t = this;
 
     t.isRun = false;              // 动画是否正在运行
@@ -57,8 +54,8 @@ export default function Animate( options ) {
     t.options = options;
 }
 
-Animate.prototype = {
-    constructor : Animate,
+AnimateFrame.prototype = {
+    constructor : AnimateFrame,
 
     /**
      * 执行动画

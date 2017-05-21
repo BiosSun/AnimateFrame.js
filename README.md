@@ -1,10 +1,10 @@
-# Animate.js
+# AnimateFrame.js
 
-Animate.js 是一个非常小的 JS 动画库，其核心部分压缩后仅 **1.7kb**，而加上其动画扩展相关的代码，也只有不到 `5kb` 的大小。
+AnimateFrame.js 是一个非常小的 JS 动画框架库，其核心部分压缩后仅 **1.7kb**，而加上其缓动动画扩展相关的代码，也只有不到 `5kb` 的大小。
 
 ## 理念
 
-Animate.js 期望抽象出一组**动画控制逻辑**，并同时保持自身足够得轻量小巧，通过保证这两点，使其可以集成在**任何项目**中并为其提供动画支持，如应用在 DOM 元素动画、Canvas 动画等**任何目标**的动画效果的实现上。
+AnimateFrame.js 期望抽象出一组**动画控制逻辑**，并同时保持自身足够得轻量小巧，通过保证这两点，使其可以集成在**任何项目**中并为其提供动画支持，如应用在 DOM 元素动画、Canvas 动画等**任何目标**的动画效果的实现上。
 
 该库所提供的控制逻辑有如下 5 个：
 
@@ -20,7 +20,7 @@ Animate.js 期望抽象出一组**动画控制逻辑**，并同时保持自身�
 ```
 var box = document.getElementById('box');
  
-var animate = new Animate({
+var animate = new AnimateFrame({
     speed: 1000,   // or 'slow', 'normal', 'fast'
     easing: 'linear',  // !optional
     iteration: 1,      // !optional
@@ -50,7 +50,7 @@ animate.pause();    // 暂停动画
 
 ## 接口
 
-### new Animate(options)
+### new AnimateFrame(options)
 
 创建一个动画对象。
 

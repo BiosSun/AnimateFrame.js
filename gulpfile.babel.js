@@ -19,11 +19,11 @@ gulp.task(`clear`, () => {
         `index.js`,
         `easing.js`,
 
-        `animate.js`,
-        `animate.min.js`,
+        `animateframe.js`,
+        `animateframe.min.js`,
 
-        `animate-easing.js`,
-        `animate-easing.min.js`
+        `animateframe-easing.js`,
+        `animateframe-easing.min.js`
     ]);
 });
 
@@ -35,7 +35,7 @@ gulp.task(`lint`, () => {
 
 gulp.task(`js.index`, () => {
     return bundle({
-        entry: `src/animate.js`
+        entry: `src/animateframe.js`
     }, {
         dest: `index.js`,
         format: `cjs`
@@ -51,28 +51,28 @@ gulp.task(`js.easing`, () => {
     });
 });
 
-gulp.task(`js.browser.animate`, () => {
+gulp.task(`js.browser.animateframe`, () => {
     return bundle({
-        entry: `src/animate.js`
+        entry: `src/animateframe.js`
     }, {
-        dest: `animate.js`,
+        dest: `animateframe.js`,
         format: `umd`,
-        moduleName: `animate`
+        moduleName: `AnimateFrame`
     });
 });
 
-gulp.task(`js.browser.animate-easing`, () => {
-    var animateModulePath = path.resolve(`./src/animate.js`);
+gulp.task(`js.browser.animateframe-easing`, () => {
+    var animateFrameModulePath = path.resolve(`./src/animateframe.js`);
 
     return bundle({
-        entry: `src/animate-easing.js`,
-        external: [ animateModulePath ],
-        paths: { [animateModulePath]: `animate` }
+        entry: `src/animateframe-easing.js`,
+        external: [ animateFrameModulePath ],
+        paths: { [animateFrameModulePath]: `animateframe` }
     }, {
-        dest: `animate-easing.js`,
+        dest: `animateframe-easing.js`,
         format: `umd`,
         exports: `none`,
-        globals: { [animateModulePath]: `Animate` }
+        globals: { [animateFrameModulePath]: `AnimateFrame` }
     });
 });
 
@@ -88,7 +88,7 @@ gulp.task(`watch`, () => {
 });
 
 gulp.task(`develop`, () => runSequence(`clear`, `lint`, `js.index`, `js.easing`, `watch`));
-gulp.task(`default`, () => runSequence(`clear`, `lint`, `js.index`, `js.easing`, `js.browser.animate`, `js.browser.animate-easing`));
+gulp.task(`default`, () => runSequence(`clear`, `lint`, `js.index`, `js.easing`, `js.browser.animateframe`, `js.browser.animateframe-easing`));
 
 // 使用 rollup 进行打包的通用操作部分
 function bundle(options, writeOptions) {
