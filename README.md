@@ -1,6 +1,6 @@
 # AnimateFrame.js
 
-AnimateFrame.js 是一个非常小的 JS 动画框架库，其核心部分压缩后仅 **1.7kb**，而加上其缓动动画扩展相关的代码，也只有不到 `5kb` 的大小。
+AnimateFrame.js 是一个非常小的 JS 动画框架库，其核心部分压缩后仅 **1.8kb**（gzip 787b），而加上其缓动动画扩展相关的代码，也 `5kb` 左右的大小（gzip 1.81kb）。
 
 ## 理念
 
@@ -15,6 +15,67 @@ AnimateFrame.js 期望抽象出一组**动画控制逻辑**，并同时保持自
 - 跳转：用于跳转到动画播放的任一时间节点；
 - 循环：用于控制循环播放动画。
 
+## 安装
+
+### npm
+
+执行如下命令进行安装：
+
+```bash
+$ npm i animateframe --D
+```
+
+### bower
+
+执行如下命令进行安装：
+
+```bower
+$ bower install animateframe --save
+```
+
+## 使用
+
+### CMD
+
+```javascript
+var AnimateFrame = require('animateframe');
+var easeInBack = require('animateframe/easing/easeInBack');
+
+var animate = new AnimateFrame({
+    ...
+    easing: easeInBack,
+    ...
+});
+```
+
+### ES2015+
+
+```javascript
+import AnimateFrame from 'animateframe';
+import { easeInBack } from 'animateframe/easing';
+
+const animate = new AnimateFrame({
+    ...
+    easing: easeInBack,
+    ...
+});
+```
+
+### 浏览器
+
+```html
+<script type="text/javascript" src="node_modules-or-bower_components/animateframe/animateframe.js"></script>
+<script type="text/javascript" src="node_modules-or-bower_components/animateframe/animateframe-easing.js"></script>
+<script type="text/javascript">
+var animate = new AnimateFrame({
+    ...
+    easing: AnimateFrame.easing.easeInBack,
+    ...
+});
+</script>
+```
+
+
 ## 示例
 
 ```
@@ -22,7 +83,7 @@ var box = document.getElementById('box');
  
 var animate = new AnimateFrame({
     speed: 1000,   // or 'slow', 'normal', 'fast'
-    easing: 'linear',  // !optional
+    easing: 'swing',  // !optional
     iteration: 1,      // !optional
  
     // 动画开始时的回调函数
