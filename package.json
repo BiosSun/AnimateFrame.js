@@ -27,12 +27,20 @@
   },
   "babel": {
     "presets": [
-      ["env", {
-        "targets": {
-          "browsers": ["ios >= 6", "android >= 4.1"]
-        },
-        "exclude": ["transform-es2015-typeof-symbol"]
-      }]
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "ios >= 6",
+              "android >= 4.1"
+            ]
+          },
+          "exclude": [
+            "transform-es2015-typeof-symbol"
+          ]
+        }
+      ]
     ],
     "plugins": [
       "add-module-exports"
@@ -42,11 +50,14 @@
     "babel-core": "^6.24.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.4.0",
+    "browser-sync": "^2.18.12",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
+    "gulp-filter": "^5.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-size": "^2.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-watch": "^4.3.11",
     "rollup": "^0.41.6",

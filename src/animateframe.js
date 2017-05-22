@@ -1,7 +1,9 @@
 import swing from './easing/swing';
 
-const raf = (typeof global === 'object' && global.requestAnimationFrame) || (typeof window === 'object' && window.requestAnimationFrame);
-const caf = (typeof global === 'object' && global.cancelAnimationFrame) || (typeof window === 'object' && window.cancelAnimationFrame);
+const g = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : this;
+
+const raf = g && g.requestAnimationFrame;
+const caf = g && g.cancelAnimationFrame;
 
 // 每秒帧数
 const FPS = 77;
