@@ -3,9 +3,11 @@
   "title": "Animate.js",
   "description": "This is javascript animate tools.",
   "version": "0.2.0",
-  "main": "dist/animate.js",
+  "main": "index.js",
   "homepage": "http://github.com/biossun/animate",
-  "keywords": [ "animate" ],
+  "keywords": [
+    "animate"
+  ],
   "author": {
     "name": "Bios Sun",
     "url": "http://biossun.org"
@@ -23,9 +25,6 @@
   "bugs": {
     "url": "https://github.com/biossun/animate/issues"
   },
-  "scripts": {
-    "start": "uglifyjs animate.js --compress --mangle -o animate.min.js && uglifyjs easing.js --compress --mangle -o easing.min.js"
-  },
   "babel": {
     "presets": [
       ["env", {
@@ -40,6 +39,18 @@
     ]
   },
   "devDependencies": {
-    "uglify-js": "^2.7.4"
+    "babel-core": "^6.24.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.4.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.1.2",
+    "gulp-watch": "^4.3.11",
+    "rollup": "^0.41.6",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "run-sequence": "^1.2.2"
   }
 }
