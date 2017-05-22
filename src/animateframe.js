@@ -178,8 +178,8 @@ AnimateFrame.prototype = {
             fun.apply( t, params );
         }
         else if ( typeof fun === 'object' && typeof fun.length === 'number' ) {  // array
-            for ( let i = 0; i < fun.lenght; i++ ) {
-                fun[i].apply( t, params );
+            for (let key in fun) {
+                fun[key].apply( t, params );
             }
         }
     }
