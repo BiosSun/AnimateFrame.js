@@ -12,8 +12,7 @@
         <!-- 站点图标，可以直接将图标文件放在网站根域名下并命名为 favicon.ico，浏览器将会自动获取。如果需要放置在其它地方，则可以像如下设置。 -->
         <link type="image/x-icon" rel="shortcut icon" href="http://biossun.org/favicon.ico" />
 
-        <!-- 样式文件位置 -->
-        <link rel="stylesheet" href="">
+        <!-- Demo 样式 -->
         <style type="text/css">
          body {
              font: 12px/1.6 arial,sans-serif;
@@ -155,26 +154,26 @@
 </html>
 
 <!-- 脚本文件位置 -->
-<script type="text/javascript" src="animate.js"></script>
-<script type="text/javascript" src="easing.js"></script>
+<script type="text/javascript" src="../animateframe.js"></script>
+<script type="text/javascript" src="../animateframe-easing.js"></script>
 <script type="text/javascript">
  (function() {
      function $(id) { return document.getElementById(id); }
 
-     var Animate = window.Animate,
-         box = $('box'),
-         speed = $('speed'),
-         easing = $('easing'),
-         iteration = $('iteration');
+     var AnimateFrame = window.AnimateFrame,
+         boxEl = $('box'),
+         speedEl = $('speed'),
+         easingEl = $('easing'),
+         iterationEl = $('iteration');
 
-     var a = new Animate({
+     var a = new AnimateFrame({
          begin: function() {
              console.info('begin');
          },
 
          frame : function( p, e, a ) {
              console.info('frame', p, e, a);
-             box.style.left = (600 * e) + 'px';
+             boxEl.style.left = (600 * e) + 'px';
          },
 
          finish: function() {
@@ -188,9 +187,9 @@
      });
 
      $('run').onclick = function() {
-         a.options.speed = parseInt( speed.value, 10 ) || speed.value;
-         a.options.easing = easing.value;
-         a.options.iteration = parseInt( iteration.value, 10 ) || 'infinite';
+         a.options.speed = parseInt( speedEl.value, 10 ) || speedEl.value;
+         a.options.easing = AnimateFrame.easing[easingEl.value];
+         a.options.iteration = parseInt( iterationEl.value, 10 ) || 'infinite';
 
          a.run();
      };
